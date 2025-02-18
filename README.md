@@ -6,7 +6,7 @@
 
 >> M -> Midterm
 
-Every M stands for midterm so all notes aregpt  separated by midterm
+Every M stands for midterm so all notes are separated by midterm
 - e.g. `m1` is everything before midterm 1
 
 
