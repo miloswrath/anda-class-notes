@@ -1,29 +1,32 @@
 import pandas as pd
 
-
+# Creating a sample DataFrame
 df = pd.DataFrame({
-    'animal': ['falcon', 'falcon',
-               'parrot', 'parrot',
-               'chicken', 'chicken'],
-    'type': ['wild', 'captive',
-             'wild', 'captive',
-             'wild', 'captive'],
-    'weight': [2., 3., 0.3, 0.4, 5., 7.],
-    'max speed': [380., 370., 26., 24., 12., 10]})
+    'Animal': ['Falcon', 'Falcon', 'Parrot', 'Parrot', 'Chicken', 'Chicken'],
+    'Type': ['Wild', 'Captive', 'Wild', 'Captive', 'Wild', 'Captive'],
+    'Weight': [2.0, 3.0, 0.3, 0.4, 5.0, 7.0],  # Weight in pounds
+    'Max_Speed': [380.0, 370.0, 26.0, 24.0, 12.0, 10.0]  # Speed in km/h
+})
 
+# Filtering for captive animals that weigh more than 1 pound
+df_captive_heavy = df[(df['Weight'] > 1) & (df['Type'] == 'Captive')]
+print("Captive animals weighing more than 1 pound:\n", df_captive_heavy)
 
-# df of captive animals that weigh more than 1 pound
-df1 = df[(df['weight']>1) & (df['type']=='captive')]
+# Filtering for animals with max speed greater than 24 km/h, selecting only relevant columns
+df_fast_animals = df.loc[df['Max_Speed'] > 24, ['Animal', 'Type', 'Max_Speed']]
+print("\nAnimals with Max Speed greater than 24 km/h:\n", df_fast_animals)
 
-#max speed > 24 only specific cols
-df2 = df.loc[df['max speed']>24, ['animal', 'type', 'max speed']]
+# Counting non-null values for each column in df_fast_animals
+count_non_null = df_fast_animals.count()
+print("\nCount of non-null values per column in fast animals dataframe:\n", count_non_null)
 
-# count non null of each col
-df2.count()
+# Counting observations where Weight is less than 7
+count_weight_below_7 = df[df['Weight'] < 7].count()
+print("\nCount of observations where Weight < 7:\n", count_weight_below_7)
 
-# count obs have weight < 7 in df
-df[df['weight']<7].count()
-df.loc[df.weight<7, ['weight']].count()
+# Alternative method: Counting only 'Weight' column where Weight is less than 7
+count_weight_only = df.loc[df['Weight'] < 7, ['Weight']].count()
+print("\nCount of observations (only 'Weight' column) where Weight < 7:\n", count_weight_only)
 
 
 
